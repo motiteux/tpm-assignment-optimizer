@@ -1,0 +1,6 @@
+id,name,timezone,skills,available_time,level,conflicts,fixed_program,desired_programs,allow_overload
+TPM001,Test Lead,America/Los_Angeles,"project-management,agile,mlops",0.8,3,PROG004,PROG001,"PROG002,PROG003",false
+TPM002,Senior TPM,Europe/London,"project-management,agile,process-optimization",1.0,4,,,PROG005,true
+TPM003,Junior TPM,Asia/Singapore,"project-management,agile",0.5,2,PROG002,,,false
+TPM004,ML Specialist,America/New_York,"project-management,agile,ml-platform",0.7,3,,,PROG006,false
+TPM005,Platform TPM,America/Chicago,"project-management,platform,infrastructure",0.9,4,"PROG007,PROG008",,,true

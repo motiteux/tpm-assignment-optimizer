@@ -1,2 +1,4 @@
 /programs.csv
 /tpms.csv
+/venv/
+/.pytest_cache/

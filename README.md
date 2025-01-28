@@ -2,7 +2,13 @@
 
 ## Overview
 
-Python-based tool for optimizing Technical Program Manager (TPM) assignments using Mixed Integer Linear Programming (MILP). The system matches TPMs to programs while respecting various constraints including timezone alignment, skill requirements, and capacity limits.
+Python-based tool for optimizing Technical Program Manager (TPM) assignments using multiple optimization strategies:
+- Mixed Integer Linear Programming (MILP) for exact solutions
+- Simulated Annealing (SA) for meta-heuristic optimization
+- Hybrid Multi-Objective optimization for Pareto-optimal solutions
+- Two-Phase optimization for rule-based assignment
+
+The system matches TPMs to programs while respecting various constraints including timezone alignment, skill requirements, and capacity limits.
 
 ## Features
 - Timezone-aware matching with stakeholder consideration
@@ -72,11 +78,59 @@ Install dependencies
 
 ## Usage
 
-Prepare input files according to schema above. Place input files in same directory as script
+Prepare input files according to schema above. Then run the optimizer using any of these methods:
 
-Run optimizer:
+    # As a Python module (recommended)
+    python -m tpm_optimizer --method sa
 
-    python tpm_assignment_optimizer.py
+    # With specific input files
+    python -m tpm_optimizer --tpms-file path/to/tpms.csv --programs-file path/to/programs.csv
+
+    # With verbose output
+    python -m tpm_optimizer --method hybrid --verbose
+
+Run optimizer with different methods:
+
+    # Default (MILP)
+    python -m tpm_optimizer --method milp
+
+    # Simulated Annealing
+    python -m tpm_optimizer --method sa
+
+    # Hybrid Multi-Objective
+    python -m tpm_optimizer --method hybrid
+
+    # Two-Phase Rule-Based
+    python -m tpm_optimizer --method two-phase
+
+Additional options:
+    --tpms-file PATH      Custom path to TPMs CSV file
+    --programs-file PATH  Custom path to Programs CSV file
+    --verbose            Enable detailed output
+
+## Method Selection Guide
+
+Choose the appropriate method based on your needs:
+
+MILP (--method milp):
+- Best for exact solutions
+- Smaller datasets
+- When optimality is critical
+
+Simulated Annealing (--method sa):
+- Good for larger datasets
+- When approximate solutions are acceptable
+- Better handling of complex constraints
+
+Hybrid (--method hybrid):
+- Best for multi-objective optimization
+- When balancing multiple competing goals
+- More flexible solution space
+
+Two-Phase (--method two-phase):
+- Best for very large datasets
+- When quick solutions are needed
+- Rule-based approach prioritizing capacity
 
 ## Constraints
 
@@ -179,6 +233,51 @@ Review capacity requirements
 Recommended maximum size: 60 TPMs × 150 programs
 
 Expected runtime: < 1 minute for recommended size
+
+Memory usage: ~500MB for recommended size
+
+## Project Structure
+
+    tpm-assignment-optimizer/
+    ├── src/
+    │   └── tpm_optimizer/
+    │       ├── models/          # Data classes (TPM, Program)
+    │       ├── optimizers/      # Optimization algorithms
+    │       │   ├── milp.py     # MILP optimizer
+    │       │   ├── simulated_annealing.py
+    │       │   ├── hybrid.py
+    │       │   └── two_phase.py
+    │       ├── utils/           # Utility functions
+    │       ├── reporting/       # Report generation
+    │       └── cli/            # Command-line interface
+    ├── tests/                  # Test suite
+    ├── test_data/             # Test data files
+    ├── requirements.txt       # Dependencies
+    └── README.md             # This file
+
+## Performance Considerations
+
+Performance varies by optimization method:
+
+MILP:
+- Recommended maximum: 60 TPMs × 150 programs
+- Expected runtime: < 1 minute
+- Provides exact solution
+
+Simulated Annealing:
+- Can handle larger datasets
+- Expected runtime: 1-2 minutes
+- Approximate solution
+
+Hybrid:
+- Recommended maximum: 80 TPMs × 200 programs
+- Expected runtime: 2-3 minutes
+- Multi-objective optimization
+
+Two-Phase:
+- Can handle largest datasets
+- Expected runtime: < 30 seconds
+- Rule-based solution
 
 Memory usage: ~500MB for recommended size
 

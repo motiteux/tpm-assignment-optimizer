@@ -1,0 +1,9 @@
+id,name,timezone,required_skills,required_time,required_level,fixed_tpm,stakeholder_timezones,complexity_score,portfolio
+PROG001,ML Pipeline,America/Los_Angeles,"project-management,mlops",0.3,3,TPM001,"America/Los_Angeles,Europe/London",4,platform
+PROG002,Data Platform,Europe/London,"project-management,infrastructure",0.4,3,,"Europe/London,America/New_York",3,platform
+PROG003,Search Service,America/New_York,"project-management,agile",0.2,2,,"America/New_York,Asia/Singapore",2,search
+PROG004,Analytics Dashboard,Asia/Singapore,"project-management,agile",0.3,2,,"Asia/Singapore,America/Los_Angeles",2,analytics
+PROG005,ML Model Training,America/Chicago,"project-management,ml-platform",0.5,4,,"America/Chicago,Europe/London",5,ml
+PROG006,Data Pipeline,America/Los_Angeles,"project-management,platform",0.4,3,,"America/Los_Angeles,America/Chicago",3,platform
+PROG007,Search Backend,Europe/London,"project-management,infrastructure",0.3,3,,"Europe/London,Asia/Singapore",4,search
+PROG008,ML Feature Store,America/New_York,"project-management,ml-platform",0.4,4,,"America/New_York,Europe/London",5,ml
